@@ -14,7 +14,17 @@ public class PostController {
     //@RequestMapping(method = RequestMethod.POST,path = "/postMethod")
     //@PostMapping("/postMethod",produces = "application.json") //기본이 json
     @PostMapping("/postMethod")
-    public String postMethod(@RequestBody SearchParam searchParam){
-        return "OK";
+    public SearchParam postMethod(@RequestBody SearchParam searchParam){
+        return searchParam;
+    }
+
+    @PutMapping
+    public void put(){
+
+    }
+
+    @PatchMapping
+    public void patch(){
+
     }
 }
