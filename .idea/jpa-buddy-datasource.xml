@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="JpbDataSourceConfig">
+    <data-sources>
+      <data-source id="56cf312a-5fe5-4254-b2ef-2811779a283c" name="study" url="jdbc:mysql://localhost:3306/studyjdbc:mysql://localhost:3306/study?useSSL=false&amp;useUnicode=true&amp;serverTimezone=Asia/Seoul&amp;allowPublicKeyRetrieval=true&amp;createDatabaseIfNotExist=true" driverClass="com.mysql.cj.jdbc.Driver" />
+    </data-sources>
+  </component>
+</project>
