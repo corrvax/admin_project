@@ -24,9 +24,9 @@ public class UserRepositoryTest extends StudyApplicationTests {
     public void create() {
         User user = new User();
         //user.setId(); Auto Increment 라서 자동으로 id 1씩 증가함
-        user.setAccount("TestUser01");
-        user.setEmail("TestUser@gmail.com");
-        user.setPhoneNumber("010-1111-1111");
+        user.setAccount("TestUser02");
+        user.setEmail("TestUser02@gmail.com");
+        user.setPhoneNumber("010-2222-2222");
         user.setCreatedAt(LocalDateTime.now());
         user.setCreatedBy("eunJo");
 
