@@ -29,9 +29,11 @@ public class UserRepositoryTest extends StudyApplicationTests {
     public void create() {
         User user = new User();
         //user.setId(); Auto Increment 라서 자동으로 id 1씩 증가함
-        user.setAccount("TestUser03");
-        user.setEmail("TestUser03@gmail.com");
-        user.setPhoneNumber("010-3333-3333");
+        user.setAccount("TestUser04");
+        user.setPassword("password0404");
+        user.setStatus("ok");
+        user.setEmail("TestUser04@gmail.com");
+        user.setPhoneNumber("010-4444-4444");
         user.setCreatedAt(LocalDateTime.now());
         user.setCreatedBy("eunJo");
 
@@ -40,12 +42,14 @@ public class UserRepositoryTest extends StudyApplicationTests {
 
     }
     @Test
+    @Transactional
     public void  read(){
-        Optional<User> user = userRepository.findById(2L);
+        Optional<User> user = userRepository.findById(1001L);
 
         user.ifPresent(selectUser ->{
-            System.out.println("user :" + user);
-            System.out.println("email" + selectUser.getEmail());
+            selectUser.getOrderDetailList().stream().forEach(detail -> {
+                System.out.println(detail.getItemId());
+            });
         });
 
     }
