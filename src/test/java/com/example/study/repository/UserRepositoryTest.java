@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.transaction.Transactional;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
@@ -50,6 +51,7 @@ public class UserRepositoryTest extends StudyApplicationTests {
     }
 
     @Test
+    @Transactional
     public void update(){
         Optional<User> user = userRepository.findById(2L);
 
@@ -64,20 +66,19 @@ public class UserRepositoryTest extends StudyApplicationTests {
     }
 
     @Test
+    @Transactional
     public void delete(){
-        Optional<User> user = userRepository.findById(2L);
+        Optional<User> user = userRepository.findById(3L);
+
+        Assertions.assertTrue(user.isPresent());// true :  data 존재
 
         user.ifPresent(selectUser -> {
             userRepository.delete(selectUser);
         });
 
-        Optional<User> deleteUser = userRepository.findById(2L);
+        Optional<User> deleteUser = userRepository.findById(3L);
 
-        if(deleteUser.isPresent()){
-            System.out.println("data is not deleted :" + deleteUser.get());
-        }else{
-            System.out.println("data is empty");
-        }
+        Assertions.assertFalse(deleteUser.isPresent());//false
     }
 
 }
