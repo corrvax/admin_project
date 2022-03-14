@@ -34,7 +34,6 @@ public class GetControllerTest {
 
         // when
         mockMvc.perform(get(uri))
-
                 // then
                 .andExpect(status().isOk())
                 .andExpect(content().string("Hi getMethod"))
