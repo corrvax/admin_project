@@ -24,7 +24,7 @@ public class OrderDetailRepositoryTest extends StudyApplicationTests {
         orderDetail.setOrderGroupId(1L);
 
         //어떤 상품?
-        orderDetail.setItemId(406L);
+        orderDetail.setId(406L);
         //어떤 사용자?
         //orderDetail.setUserId(1001L);
 

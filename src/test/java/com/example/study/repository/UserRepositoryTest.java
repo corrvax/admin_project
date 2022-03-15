@@ -37,7 +37,7 @@ public class UserRepositoryTest extends StudyApplicationTests {
         user.setCreatedAt(LocalDateTime.now());
         user.setCreatedBy("eunJo");
 
-        User newUser = userRepository.save(user);//parameter로 넣은 객체를 반환함
+        User newUser = userRepository.save(user);//parameter 넣은 객체를 반환함
         System.out.println("newUser :" +newUser);
 
     }
@@ -46,11 +46,11 @@ public class UserRepositoryTest extends StudyApplicationTests {
     public void  read(){
         Optional<User> user = userRepository.findByAccount("TestUser04");
 
-        user.ifPresent(selectUser ->{
-            selectUser.getOrderDetailList().stream().forEach(detail -> {
-                System.out.println(detail.getItemId());
-            });
-        });
+//        user.ifPresent(selectUser ->{
+//            selectUser.getOrderDetailList().stream().forEach(detail -> {
+//                System.out.println(detail.getId());
+//            });
+//        });
 
     }
 

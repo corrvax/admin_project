@@ -4,33 +4,41 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.time.LocalDateTime;
-import java.util.List;
 
-@Data
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
+@Data
 @Entity
-@Table(name ="user")
-public class User {
+public class AdminUser {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy =  GenerationType.IDENTITY)
     private Long id;
-    private String account;
+
+    private  String account;
+
     private String password;
+
     private String status;
-    private String email;
-    private String phoneNumber;
+
+    private String role;
+
+    private LocalDateTime lastLoginAt;
+
+    private Integer loginFailCount;
+
+    private LocalDateTime passwordUpdatedAt;
+
     private LocalDateTime registeredAt;
     private LocalDateTime unregisteredAt;
     private LocalDateTime createdAt;
     private String createdBy;
     private LocalDateTime updatedAt;
     private String updatedBy;
-//    //1 : N
-//    //Lazy : 지연로딩 EAGER : 즉시로딩
-//    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")//orderDetail에 있는 변수명과 같아야함(user)
-//    private List<OrderDetail> orderDetailList;
+
 }
