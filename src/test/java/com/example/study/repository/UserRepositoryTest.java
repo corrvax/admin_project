@@ -27,30 +27,35 @@ public class UserRepositoryTest extends StudyApplicationTests {
 
     @Test
     public void create() {
-        User user = new User();
-        //user.setId(); Auto Increment 라서 자동으로 id 1씩 증가함
-        user.setAccount("TestUser04");
-        user.setPassword("password0404");
-        user.setStatus("ok");
-        user.setEmail("TestUser04@gmail.com");
-        user.setPhoneNumber("010-4444-4444");
-        user.setCreatedAt(LocalDateTime.now());
-        user.setCreatedBy("eunJo");
+        String account = "Test2022";
+        String password = "Test2022";
+        String status = "REGISTERED";
+        String email = "Test01@gmail.com";
+        String phoneNumber = "010-1111-2222";
+        LocalDateTime registeredAt = LocalDateTime.now();
+        LocalDateTime createdAt = LocalDateTime.now();
+        String createdBy = "AdminServer";
 
-        User newUser = userRepository.save(user);//parameter 넣은 객체를 반환함
-        System.out.println("newUser :" +newUser);
+        User user = new User();
+        user.setAccount(account);
+        user.setPassword(password);
+        user.setStatus(status);
+        user.setEmail(email);
+        user.setPhoneNumber(phoneNumber);
+        user.setRegisteredAt(registeredAt);
+        user.setCreatedAt(createdAt);
+        user.setCreatedBy(createdBy);
+
+        User newUser = userRepository.save(user);
+        Assertions.assertNotNull(newUser);
 
     }
     @Test
     @Transactional
     public void  read(){
-        Optional<User> user = userRepository.findByAccount("TestUser04");
 
-//        user.ifPresent(selectUser ->{
-//            selectUser.getOrderDetailList().stream().forEach(detail -> {
-//                System.out.println(detail.getId());
-//            });
-//        });
+        User user = userRepository.findFirstByPhoneNumberOrderByIdDesc("010-1111-0030");
+        Assertions.assertNotNull(user);
 
     }
 

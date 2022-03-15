@@ -22,7 +22,7 @@ public class Partner {
     private String name;
     private String status;
     private String address;
-    private String callCanter;
+    private String callCenter;
     private String partnerNumber;
     private String businessNumber;
     private String ceoName;
@@ -32,5 +32,7 @@ public class Partner {
     private String createdBy;
     private LocalDateTime updatedAt;
     private String updatedBy;
+    private Long categoryId;
+
 
 }
