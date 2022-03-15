@@ -28,6 +28,7 @@ public class User {
     private LocalDateTime updatedAt;
     private String updatedBy;
     //1 : N
+    //Lazy : 지연로딩 EAGER : 즉시로딩
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")//orderDetail에 있는 변수명과 같아야함(user)
     private List<OrderDetail> orderDetailList;
 }

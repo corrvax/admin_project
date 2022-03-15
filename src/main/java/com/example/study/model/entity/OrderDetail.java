@@ -27,7 +27,8 @@ public class OrderDetail {
 
     private Long orderGroupId;
 
-    private Long itemId;
+    @ManyToOne
+    private Item item;
     // orderDetail 입장에서 N : 1
     @ManyToOne
     private User user; //user_id 타입은 반드시 객체이름써야함
