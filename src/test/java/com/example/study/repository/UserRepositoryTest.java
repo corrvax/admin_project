@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.test.annotation.Rollback;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -16,15 +17,16 @@ import javax.transaction.Transactional;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
-//@DataJpaTest// JPA 테스트 관련 컴포넌트만 Import
-//@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)    // 실제 db 사용
-//@DisplayName("UserRepositoryTest 테스트")
-public class UserRepositoryTest extends StudyApplicationTests {
+@DataJpaTest// JPA 테스트 관련 컴포넌트만 Import
+@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)    // 실제 db 사용
+@DisplayName("UserRepositoryTest 테스트")
+public class UserRepositoryTest {
 
     //Dependency Injection
     @Autowired
     private UserRepository userRepository;
 
+    //@Rollback(value = false)
     @Test
     public void create() {
         String account = "Test2022";
@@ -54,7 +56,7 @@ public class UserRepositoryTest extends StudyApplicationTests {
     @Transactional
     public void  read(){
 
-        User user = userRepository.findFirstByPhoneNumberOrderByIdDesc("010-1111-0030");
+        User user = userRepository.findFirstByPhoneNumberOrderByIdDesc("010-1111-2222");
         Assertions.assertNotNull(user);
 
     }
@@ -62,7 +64,7 @@ public class UserRepositoryTest extends StudyApplicationTests {
     @Test
     @Transactional
     public void update(){
-        Optional<User> user = userRepository.findById(2L);
+        Optional<User> user = userRepository.findById(3L);
 
         user.ifPresent( selectUser -> {
             selectUser.setAccount("update account");
@@ -75,9 +77,8 @@ public class UserRepositoryTest extends StudyApplicationTests {
     }
 
     @Test
-    @Transactional
     public void delete(){
-        Optional<User> user = userRepository.findById(3L);
+        Optional<User> user = userRepository.findById(2L);
 
         Assertions.assertTrue(user.isPresent());// true :  data 존재
 
@@ -85,7 +86,7 @@ public class UserRepositoryTest extends StudyApplicationTests {
             userRepository.delete(selectUser);
         });
 
-        Optional<User> deleteUser = userRepository.findById(3L);
+        Optional<User> deleteUser = userRepository.findById(2L);
 
         Assertions.assertFalse(deleteUser.isPresent());//false
     }

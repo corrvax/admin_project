@@ -10,10 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
-//@DataJpaTest// JPA 테스트 관련 컴포넌트만 Import
-//@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)    // 실제 db 사용
+@DataJpaTest// JPA 테스트 관련 컴포넌트만 Import
+@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)    // 실제 db 사용
 @DisplayName("ItemRepositoryTest 테스트")
-public class PartnerRepositoryTest extends StudyApplicationTests {
+public class PartnerRepositoryTest {
 
     @Autowired
     private PartnerRepository partnerRepository;

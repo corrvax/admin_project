@@ -1,38 +1,50 @@
 package com.example.study.repository;
 
-import com.example.study.StudyApplicationTests;
 import com.example.study.model.entity.Item;
+import java.time.LocalDateTime;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.w3c.dom.ls.LSOutput;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
 import java.util.Optional;
 
-public class ItemRepositoryTest extends StudyApplicationTests {
+@DataJpaTest
+@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
+@DisplayName("ItemRepositoryTest 테스트")
+public class ItemRepositoryTest {
 
     @Autowired
     private ItemRepository itemRepository;
 
     @Test
     public void create(){
+
         Item item = new Item();
-        item.setName("note book3");
-        item.setTitle("title is 3cnote book");
-        item.setContent("sam sung NoteBook");
-        item.setPrice(300000);
-        item.setPartnerId(3L);
+        item.setStatus("UNREGISTERED");
+        item.setName("삼성 노트북");
+        item.setTitle("삼성 노트북 A100");
+        item.setContent("2019년형 노트북 입니다");
+        item.setPrice(900000);
+        item.setBrandName("삼성");
+        item.setRegisteredAt(LocalDateTime.now());
+        item.setCreatedAt(LocalDateTime.now());
+        item.setCreatedBy("Partner01");
+        item.setPartnerId(1L);
+
 
         Item newItem = itemRepository.save(item);
         Assertions.assertNotNull(newItem);
     }
 
+
     @Test
     public void read(){
-        Long id = 406L;
+        Long id = 1L;
 
         Optional<Item> item = itemRepository.findById(id);
-
         Assertions.assertTrue(item.isPresent());
     }
 }

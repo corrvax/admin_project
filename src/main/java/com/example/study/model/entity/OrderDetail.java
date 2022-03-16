@@ -35,6 +35,8 @@ public class OrderDetail {
     private LocalDateTime registeredAt;
     private LocalDateTime unregisteredAt;
 
+    private Long itemId;
+
 
 //    @ManyToOne
 //    private Item item;
