@@ -8,12 +8,18 @@ import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import lombok.ToString;
+import org.springframework.data.annotation.CreatedBy;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedBy;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity //order_datail
 @ToString(exclude = {"orderGroup","item"})
+@EntityListeners(AuditingEntityListener.class)
 public class OrderDetail {
 
     @Id
@@ -22,11 +28,14 @@ public class OrderDetail {
 
     private String status;
 
-    private LocalDateTime arrivalDate;
-
+    @CreatedDate
     private LocalDateTime createdAt;
-
+    @CreatedBy
     private String createdBy;
+    @LastModifiedDate
+    private LocalDateTime updatedAt;
+    @LastModifiedBy
+    private String updatedBy;
 
     //OrderDetail N : 1 OrderGroup
     @ManyToOne
@@ -50,4 +59,5 @@ public class OrderDetail {
 //    private User user; //user_id 타입은 반드시 객체이름써야함
 
     private LocalDateTime orderAt;
+    private LocalDateTime arrivalDate;
 }

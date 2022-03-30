@@ -1,6 +1,7 @@
 package com.example.study.model.entity;
 
 import java.util.List;
+import javax.persistence.EntityListeners;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -15,12 +16,18 @@ import javax.persistence.Id;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import lombok.ToString;
+import org.springframework.data.annotation.CreatedBy;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedBy;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
 @Entity
 @ToString(exclude = {"user","orderDetailList"})
+@EntityListeners(AuditingEntityListener.class)
 public class OrderGroup {
 
     @Id
@@ -45,10 +52,14 @@ public class OrderGroup {
 
     private LocalDateTime orderAt;
 
-    private LocalDateTime updatedAt;
-    private String updatedBy;
+    @CreatedDate
     private LocalDateTime createdAt;
+    @CreatedBy
     private String createdBy;
+    @LastModifiedDate
+    private LocalDateTime updatedAt;
+    @LastModifiedBy
+    private String updatedBy;
 
     //OrderGroup 1 : N User
     @ManyToOne

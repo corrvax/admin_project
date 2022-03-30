@@ -8,12 +8,18 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
 import lombok.ToString;
+import org.springframework.data.annotation.CreatedBy;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedBy;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 @Data
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString(exclude = {"orderDetailList","partner"})
+@EntityListeners(AuditingEntityListener.class)
 public class Item {
 
     @Id
@@ -31,14 +37,21 @@ public class Item {
     private Integer price;
 
     private String brandName;
+
+    private LocalDateTime registeredAt;
+
     //Item N : 1 Partner
     @ManyToOne
     private Partner partner;
 
-    private LocalDateTime registeredAt;
-    private LocalDateTime unregisteredAt;
+    @CreatedDate
     private LocalDateTime createdAt;
+    @CreatedBy
     private String createdBy;
+    @LastModifiedDate
+    private LocalDateTime updatedAt;
+    @LastModifiedBy
+    private String updatedBy;
 
     //1 : N
     //LAZY 지연로딩 select * from item where id = ? //관련있는 테이블만 가져오겠다.
