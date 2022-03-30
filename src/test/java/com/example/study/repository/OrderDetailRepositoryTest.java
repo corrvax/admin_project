@@ -31,7 +31,7 @@ public class OrderDetailRepositoryTest {
 
 
         //orderDetail.setOrderGroupId(1L);    // 어떠한 장바구니에
-        orderDetail.setItemId(1L);          // 어떠한 상품
+        //orderDetail.setItemId(1L);          // 어떠한 상품
 
 
         orderDetail.setCreatedAt(LocalDateTime.now());
