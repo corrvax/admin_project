@@ -1,6 +1,5 @@
 package com.example.study.repository;
 
-import com.example.study.StudyApplicationTests;
 import com.example.study.model.entity.User;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -47,6 +46,15 @@ public class UserRepositoryTest {
         user.setRegisteredAt(registeredAt);
         user.setCreatedAt(createdAt);
         user.setCreatedBy(createdBy);
+
+
+        //User객체 생성시 여러종류 생성자 추가할때마다 Entity에 변경 필요
+        //->Builder()어노테이션추가해서 간단하게 여러종류의 생성자 생성없이 객체 생성 가능
+        User u = User.builder()
+            .account(account)
+            .password(password)
+            .email(email)
+            .build();
 
         User newUser = userRepository.save(user);
         Assertions.assertNotNull(newUser);
