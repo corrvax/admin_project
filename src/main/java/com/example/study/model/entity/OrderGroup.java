@@ -1,5 +1,6 @@
 package com.example.study.model.entity;
 
+import java.util.List;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -19,7 +20,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @Data
 @Entity
-@ToString(exclude = {"user"})
+@ToString(exclude = {"user","orderDetailList"})
 public class OrderGroup {
 
     @Id
@@ -52,4 +53,8 @@ public class OrderGroup {
     //OrderGroup 1 : N User
     @ManyToOne
     private User user;
+
+    //OrderGroup 1 : N OrderDetail
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "orderGroup")
+    private List<OrderDetail> orderDetailList;
 }

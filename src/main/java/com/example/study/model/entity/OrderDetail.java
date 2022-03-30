@@ -7,11 +7,13 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import lombok.ToString;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity //order_datail
+@ToString(exclude = {"orderGroup"})
 public class OrderDetail {
 
     @Id
@@ -26,7 +28,9 @@ public class OrderDetail {
 
     private String createdBy;
 
-    private Long orderGroupId;
+    //OrderDetail N : 1 OrderGroup
+    @ManyToOne
+    private OrderGroup orderGroup;
 
     private Integer quantity;
 
