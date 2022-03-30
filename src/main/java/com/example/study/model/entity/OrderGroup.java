@@ -1,5 +1,8 @@
 package com.example.study.model.entity;
 
+import javax.persistence.FetchType;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,11 +13,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import lombok.ToString;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
 @Entity
+@ToString(exclude = {"user"})
 public class OrderGroup {
 
     @Id
@@ -44,5 +49,7 @@ public class OrderGroup {
     private LocalDateTime createdAt;
     private String createdBy;
 
-    private Long userId;
+    //OrderGroup 1 : N User
+    @ManyToOne
+    private User user;
 }

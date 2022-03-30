@@ -57,6 +57,15 @@ public class UserRepositoryTest {
     public void  read(){
 
         User user = userRepository.findFirstByPhoneNumberOrderByIdDesc("010-1111-2222");
+
+        user.getOrderGroupList().stream().forEach(orderGroup -> {
+            System.out.println("수령인 : "+ orderGroup.getRevName());
+            System.out.println("총금액 : " + orderGroup.getTotalPrice());
+            System.out.println("수령지 : " + orderGroup.getRevAddress());
+            System.out.println("총수량 : " + orderGroup.getTotalQuantity());
+        });
+        
+
         Assertions.assertNotNull(user);
 
     }

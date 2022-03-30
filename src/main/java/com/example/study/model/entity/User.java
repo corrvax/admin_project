@@ -7,12 +7,14 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
+import lombok.ToString;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
 @Table(name = "user")
+@ToString(exclude = {"orderGroup"})
 public class User {
 
     @Id
@@ -29,8 +31,9 @@ public class User {
     private String createdBy;
     private LocalDateTime updatedAt;
     private String updatedBy;
-//    //1 : N
-//    //Lazy : 지연로딩 EAGER : 즉시로딩
-//    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")//orderDetail에 있는 변수명과 같아야함(user)
-//    private List<OrderDetail> orderDetailList;
+    //User 1 : N OrderGroup
+    //Lazy : 지연로딩 EAGER : 즉시로딩
+    //OneToMany 이므로 List타입으로 받아옴
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")//orderGroup에 있는 변수명과 같아야함(user)
+    private List<OrderGroup> orderGroupList;
 }
