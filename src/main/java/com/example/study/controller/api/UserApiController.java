@@ -15,24 +15,23 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/user")
-public class UserApiController implements CrudInterface {
-
+public class UserApiController implements CrudInterface<UserApiResponse,UserApiRequest> {
 
     @Override
-    @PostMapping("") // api/user
-    public Header<UserApiResponse> create(@RequestBody UserApiRequest userApiRequest) {
+    @PostMapping("")
+    public Header<UserApiRequest> create(@RequestBody UserApiResponse request) {
         return null;
     }
 
     @Override
     @GetMapping("{id}")     // api/user/{id}
-    public Header read(@PathVariable(name = "id") Long id) {
+    public Header<UserApiRequest> read(@PathVariable(name ="id") Long id) {
         return null;
     }
 
     @Override
-    @PutMapping("")         // api/user
-    public Header update() {
+    @PutMapping("")
+    public Header<UserApiRequest> update(@RequestBody UserApiResponse request) {
         return null;
     }
 

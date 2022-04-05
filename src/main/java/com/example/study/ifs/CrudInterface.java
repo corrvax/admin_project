@@ -1,16 +1,14 @@
 package com.example.study.ifs;
 
 import com.example.study.model.network.Header;
-import com.example.study.model.network.request.UserApiRequest;
-import com.example.study.model.network.response.UserApiResponse;
 
-public interface CrudInterface {
+public interface CrudInterface<Req,Res> {
 
-    Header<UserApiResponse> create(UserApiRequest request); // todo request object 추가
+    Header<Res> create(Req request); // todo request object 추가
 
-    Header read(Long id);
+    Header<Res> read(Long id);
 
-    Header update();
+    Header<Res> update(Req request);
 
     Header delete(Long id);
 
