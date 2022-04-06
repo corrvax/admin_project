@@ -19,7 +19,7 @@ public class UserApiController implements CrudInterface<UserApiResponse,UserApiR
 
     @Override
     @PostMapping("")
-    public Header<UserApiRequest> create(@RequestBody UserApiResponse request) {
+    public Header<UserApiRequest> create(@RequestBody Header<UserApiResponse> request) {
         return null;
     }
 
@@ -31,7 +31,7 @@ public class UserApiController implements CrudInterface<UserApiResponse,UserApiR
 
     @Override
     @PutMapping("")
-    public Header<UserApiRequest> update(@RequestBody UserApiResponse request) {
+    public Header<UserApiRequest> update(@RequestBody Header<UserApiResponse> request) {
         return null;
     }
 
