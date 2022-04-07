@@ -35,12 +35,14 @@ public class UserApiController implements CrudInterface<UserApiRequest,UserApiRe
     @Override
     @GetMapping("{id}")     // api/user/{id}
     public Header<UserApiResponse> read(@PathVariable(name ="id") Long id) {
-        return null;
+        log.info("read id: {}",id);
+        return userApiLogicService.read(id);
     }
 
     @Override
     @PutMapping("")
     public Header<UserApiResponse> update(@RequestBody Header<UserApiRequest> request) {
+
         return null;
     }
 

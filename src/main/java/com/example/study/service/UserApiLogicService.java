@@ -7,6 +7,7 @@ import com.example.study.model.network.request.UserApiRequest;
 import com.example.study.model.network.response.UserApiResponse;
 import com.example.study.repository.UserRepository;
 import java.time.LocalDateTime;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -45,7 +46,16 @@ public class UserApiLogicService implements CrudInterface<UserApiRequest, UserAp
 
     @Override
     public Header<UserApiResponse> read(Long id) {
-        return null;
+        // id -> repository getOne, getById
+        Optional<User> optional = userRepository.findById(id);
+
+        //user -> userApiResponse return
+
+        return optional
+                .map(user -> response((user)) //user의 return type변경
+                .orElseGet(
+                        ()-> Header.ERROR("데이터 없음")
+                );
     }
 
     @Override
