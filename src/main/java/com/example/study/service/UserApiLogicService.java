@@ -47,12 +47,8 @@ public class UserApiLogicService implements CrudInterface<UserApiRequest, UserAp
     @Override
     public Header<UserApiResponse> read(Long id) {
         // id -> repository getOne, getById
-        Optional<User> optional = userRepository.findById(id);
-
-        //user -> userApiResponse return
-
-        return optional
-                .map(user -> response((user)) //user의 return type변경
+        return userRepository.findById(id)
+                .map(user -> response(user) ) //user의 return type변경
                 .orElseGet(
                         ()-> Header.ERROR("데이터 없음")
                 );
