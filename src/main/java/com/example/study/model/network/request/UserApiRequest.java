@@ -1,5 +1,6 @@
 package com.example.study.model.network.request;
 
+import java.time.LocalDateTime;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -16,4 +17,7 @@ public class UserApiRequest {
     private String status;
     private String email;
     private String phoneNumber;
+    private LocalDateTime registeredAt;
+    private LocalDateTime unregisteredAt;
+
 }
