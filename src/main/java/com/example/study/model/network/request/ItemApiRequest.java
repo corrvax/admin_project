@@ -1,5 +1,6 @@
 package com.example.study.model.network.request;
 
+import com.example.study.model.enumclass.ItemStatus;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import lombok.AllArgsConstructor;
@@ -14,7 +15,7 @@ import lombok.NoArgsConstructor;
 public class ItemApiRequest {
     private Long id;
 
-    private String status;
+    private ItemStatus status;
 
     private String name;
 
